@@ -156,6 +156,9 @@ iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE
 iptables-save > /etc/iptables.up.rules
 wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/jm051484/Deb83in1Autoscript/master/iptables"
 chmod +x /etc/network/if-up.d/iptables
+sed -i 's|LimitNPROC|#LimitNPROC|g' /lib/systemd/system/openvpn@.service
+systemctl daemon-reload
+/etc/init.d/openvpn restart
 
 # openvpn config
 wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/jm051484/Deb83in1Autoscript/master/client.conf"
@@ -190,6 +193,7 @@ sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=3128/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 143"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
+/etc/init.d/dropbear restart
 
 # install squid
 apt-get -y install squid
