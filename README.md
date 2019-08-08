@@ -3,8 +3,8 @@
 #### OpenSSH : 22
 #### Dropbear : 143, 3128
 #### SSL : 443
+#### Port OpenVPNSSL: 442
 #### Squid3 : 8000, 8080 (limit to IP SSH)
-#### SSL: http://myip:81/ssl.conf
 #### Config SSL: http://myip:81/ssl.conf
 #### OpenVPNSSL: http://myip:81/openvpnssl.ovpn
 #### OpenVPN : TCP 1194 (client config : http://myip:81/client.ovpn)
