@@ -5,34 +5,6 @@
 # 
 # ==================================================
 
-if [ $USER != 'root' ]; then
-	echo "You must run this as root"
-	exit
-fi
-
-vps="vps";
-
-if [[ $vps = "vps" ]]; then
-	source="https://raw.githubusercontent.com/jm051484/Deb93in1Autoscript/master"
-else
-	source="https://raw.githubusercontent.com/jm051484/Deb93in1Autoscript/master"
-fi
-
-clear
-echo ""
-echo "I need to ask some questions before starting setup"
-echo "You can leave the default option and just hit enter if you agree with the option"
-echo ""
-echo "First I need to know the new password of MySQL root user:"
-read -p "Password baru: " -e -i jm051484 DatabasePass
-echo ""
-echo "Finally, name the Database Name for OCS Panels"
-echo " Please, use one word only, no special characters other than Underscore (_)"
-read -p " Database Name: " -e -i OCS_PANEL DatabaseName
-echo ""
-echo "Okay, that's all I need. We are ready to setup your OCS Panels now"
-read -n1 -r -p "Press any key to continue..."
-
 # initializing var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
@@ -79,7 +51,7 @@ sed -i '$ i\echo "nameserver 1.1.1.1" > /etc/resolv.conf' /etc/rc.local
 sed -i '$ i\echo "nameserver 8.8.8.8" >> /etc/resolv.conf' /etc/rc.local
 
 # install wget and curl
-apt-get update;apt-get -y install wget curl;
+apt-get -y install wget curl
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
@@ -505,6 +477,13 @@ echo ""  | tee -a log-install.txt
 echo "Original Script by Fornesia, Rzengineer & Fawzya"  | tee -a log-install.txt
 echo "Modified by jm051484"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
+echo "=======================================================" | tee -a log-install.txt
+echo "Please login Reseller Panel at http://$MYIP:85" | tee -a log-install.txt
+echo "" | tee -a log-install.txt
+echo "Auto Script Installer OCS Panels Mod by jm051484"  | tee -a log-install.txt
+echo "" | tee -a log-install.txt
+echo "Thanks " | tee -a log-install.txt
+echo "" | tee -a log-install.txt
 echo "Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
